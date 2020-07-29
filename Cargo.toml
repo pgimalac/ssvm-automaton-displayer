@@ -1,8 +1,14 @@
 [package]
-name = "ssvm_nodejs_starter"
+name = "ssvm_automaton_displayer"
 version = "0.1.0"
-authors = ["ubuntu"]
+authors = ["Pierre Gimalac <pierre.gimalac@gmail.com>"]
 edition = "2018"
+build = "build.rs"
+description = "A Rust/nodejs project using the second state virtual machine to display given regexes as automatons"
+readme = "README.md"
+homepage = "https://github.com/pgimalac/ssvm-automaton-displayer"
+repository = "https://github.com/pgimalac/ssvm-automaton-displayer"
+license = "MIT"
 
 [package.metadata.ssvmup.profile.release]
 wasm-opt = ['-O4']
@@ -14,3 +20,7 @@ crate-type =["cdylib"]
 
 [dependencies]
 wasm-bindgen = "=0.2.61"
+rustomaton="0.2"
+
+[build-dependencies]
+cc = "1.0.54"
