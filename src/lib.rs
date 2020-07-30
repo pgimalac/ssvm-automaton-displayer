@@ -27,7 +27,8 @@ pub fn regex_to_svg(s: &str, determinize: u8, minimize: u8) -> String {
     };
 
     let len = dot.len();
-    let mut svg = unsafe { dot_to_svg(std::ffi::CString::new(dot).unwrap().as_ptr() as _, len as _) };
+    let dotstring = std::ffi::CString::new(dot).unwrap();
+    let mut svg = unsafe { dot_to_svg(dotstring.as_ptr() as _, len as _) };
 
     if svg == 0 {
         return String::new();
