@@ -1,11 +1,15 @@
+use std::ptr::null;
 use std::ffi::CStr;
 use rustomaton::{dfa::ToDfa,nfa::ToNfa,regex::Regex};
 use std::{str::FromStr, os::raw::{c_char, c_int}};
 use wasm_bindgen::prelude::*;
 
-extern {
-    fn dot_to_svg(_: c_char, _: c_int) -> c_char;
-    fn c_free(_: c_char);
+#[link(name = "mygvc", kind = "static")]
+#[link(name = "gvc", kind = "dylib")]
+#[link(name = "cgraph", kind = "dylib")]
+extern "C" {
+    fn dot_to_svg(_: *const c_char, _: c_int) -> *const c_char;
+    fn c_free(_: *const c_char);
 }
 
 #[wasm_bindgen]
@@ -28,13 +32,14 @@ pub fn regex_to_svg(s: &str, determinize: u8, minimize: u8) -> String {
 
     let len = dot.len();
     let dotstring = std::ffi::CString::new(dot).unwrap();
-    let mut svg = unsafe { dot_to_svg(dotstring.as_ptr() as _, len as _) };
+    let svg = unsafe { dot_to_svg(dotstring.as_ptr() as _, len as _) };
 
-    if svg == 0 {
+    if svg == null() {
         return String::new();
     }
 
-    let ret = unsafe { CStr::from_ptr(&mut svg as _) }.to_str().expect("").to_string();
+    let ret = unsafe {CStr::from_ptr(svg)}.to_string_lossy().into_owned();
+
     unsafe { c_free(svg) };
 
     ret

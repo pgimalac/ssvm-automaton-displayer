@@ -1,6 +1,6 @@
-#include <graphviz/gvc.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <graphviz/gvc.h>
 
 char *dot_to_svg(char *dot, int len) {
     FILE *infile = fmemopen(dot, len, "r");

@@ -1,8 +1,13 @@
+extern crate cc;
+
 fn main() {
-    println!("cargo:rustc-link-lib=gvc");
-    println!("cargo:rustc-link-lib=cgraph");
+    // println!("cargo:rustc-link-lib=mygvc");
+    // println!("cargo:rustc-link-lib=gvc");
+    // println!("cargo:rustc-link-lib=cgraph");
 
     cc::Build::new()
-        .file("dot_to_svg.c")
-        .compile("dot_to_svg");
+        .file("src/c/mygvc.c")
+        .include("src")
+        // .shared_flag(true)
+        .compile("libmygvc.a");
 }
