@@ -4,9 +4,9 @@ use rustomaton::{dfa::ToDfa,nfa::ToNfa,regex::Regex};
 use std::{str::FromStr, os::raw::{c_char, c_int}};
 use wasm_bindgen::prelude::*;
 
-#[link(name = "mygvc", kind = "static")]
-#[link(name = "gvc", kind = "dylib")]
-#[link(name = "cgraph", kind = "dylib")]
+// #[link(name = "mygvc")]
+// #[link(name = "gvc")]
+// #[link(name = "cgraph")]
 extern "C" {
     fn dot_to_svg(_: *const c_char, _: c_int) -> *const c_char;
     fn c_free(_: *const c_char);
