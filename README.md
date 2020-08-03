@@ -20,7 +20,7 @@ You can clone this project, follow the instructions on <https://www.secondstate.
 
 *Note that the project currently doesn't run this way successfully.*
 
-A command line interface is given, simply run `cargo run [regex]` to launch it. *regex* is an optional argument, if it is not given then a regex is expected on stdin. The SVG is written on stdout, thus it can easily be piped to a tool such as display.
+A command line interface is given, simply run `cargo run [regex]` to launch it. *regex* is an optional argument, if it is not given then a regex is expected on stdin. The SVG is written on stdout, thus it can easily be piped to a tool such as [display](https://imagemagick.org/script/display.php).
 
 ```shell
 cargo run "a*b|b.c|d?e+" | display
