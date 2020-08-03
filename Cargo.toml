@@ -9,7 +9,6 @@ readme = "README.md"
 homepage = "https://github.com/pgimalac/ssvm-automaton-displayer"
 repository = "https://github.com/pgimalac/ssvm-automaton-displayer"
 license = "MIT"
-links = "mygvc"
 
 [package.metadata.ssvmup.profile.release]
 wasm-opt = ['-O4']
