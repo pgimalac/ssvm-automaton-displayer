@@ -7,7 +7,7 @@ const port = 3000;
 
 const server = http.createServer((req, res) => {
     const queryObject = url.parse(req.url,true).query;
-    res.end(regex_to_svg("a.+b*+cd?", 0, 0) + '\n');
+    res.end(regex_to_svg("a.+b*+cd?", 1, 1) + '\n');
 });
 
 server.listen(port, hostname, () => {

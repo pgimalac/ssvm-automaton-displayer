@@ -1,12 +1,15 @@
-use std::ptr::null;
+use rustomaton::{dfa::ToDfa, nfa::ToNfa, regex::Regex};
 use std::ffi::CStr;
-use rustomaton::{dfa::ToDfa,nfa::ToNfa,regex::Regex};
-use std::{str::FromStr, os::raw::{c_char, c_int}};
+use std::ptr::null;
+use std::{
+    os::raw::{c_char, c_int},
+    str::FromStr,
+};
 use wasm_bindgen::prelude::*;
 
-// #[link(name = "mygvc")]
-// #[link(name = "gvc")]
-// #[link(name = "cgraph")]
+#[link(name = "mygvc")]
+#[link(name = "gvc")]
+#[link(name = "cgraph")]
 extern "C" {
     fn dot_to_svg(_: *const c_char, _: c_int) -> *const c_char;
     fn c_free(_: *const c_char);
@@ -38,7 +41,9 @@ pub fn regex_to_svg(s: &str, determinize: u8, minimize: u8) -> String {
         return String::new();
     }
 
-    let ret = unsafe {CStr::from_ptr(svg)}.to_string_lossy().into_owned();
+    let ret = unsafe { CStr::from_ptr(svg) }
+        .to_string_lossy()
+        .into_owned();
 
     unsafe { c_free(svg) };
 
