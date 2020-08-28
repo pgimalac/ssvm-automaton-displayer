@@ -1,6 +1,11 @@
 # SSVM automaton displayer
+## Warning
+I abandoned this project when I realised how awful it became. What I initially wanted to do (the way I wanted to do it) was not possible and I had to twist it a lot to make it work.
+
+It just wasn't fun anymore working on this so I stopped.
+
 ## Goal
-The goal of this project is to convert a regex to an automaton and display it.
+The goal of this project is to convert a regex to an automaton and display it in a browser.
 
 ## Technos
 The project uses SSVM to compile the Rust code to WebAssembly and call it from the nodejs front-end.
